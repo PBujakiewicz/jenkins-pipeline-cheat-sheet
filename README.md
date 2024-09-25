@@ -13,7 +13,7 @@ steps {
             }
             retryAttempt = retryAttempt + 1
 
-            ToDo...
+            Step command...
         }
     }
 }
