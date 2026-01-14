@@ -40,6 +40,23 @@ steps {
         }
     }
 }
+
+steps {
+    script {
+        def credId = 'jenkins-user-pass'
+
+        try {
+            withCredentials([usernamePassword(credentialsId: credId, usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                echo "---------------------------------------------------"
+                sh 'echo "user: $USERNAME"'
+                sh 'echo "password: $PASSWORD"'
+                echo "---------------------------------------------------"
+            }
+        } catch (Exception e) {
+            echo "There is no such ID: '${credId}'"
+        }
+    }
+}
 ```
 
 <br /><br />
