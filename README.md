@@ -21,3 +21,25 @@ steps {
 
 <br /><br />
 
+## Echo Credentials
+```groovy
+steps {
+    script {
+        def credId = 'jenkins'
+
+        try {
+            withCredentials([string(credentialsId: credId, variable: 'SECRET_TOKEN')]) {
+
+                echo "---------------------------------------------------"
+                sh 'echo -n "$SECRET_TOKEN" | base64'
+                echo "---------------------------------------------------"
+            }
+        } catch (Exception e) {
+            echo "There is no such ID: '${credId}'"
+
+        }
+    }
+}
+```
+
+<br /><br />
